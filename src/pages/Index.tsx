@@ -14,7 +14,7 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="light">
       <main className="min-h-screen">
         <Navbar />
         <HeroSection />
