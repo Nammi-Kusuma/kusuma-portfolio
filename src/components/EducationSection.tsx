@@ -55,7 +55,7 @@ export function EducationSection() {
           {educations.map((education, index) => (
             <Card 
               key={index}
-              className="opacity-0 animate-fade-up hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/40"
+              className="opacity-0 animate-fade-up hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border-border hover:border-primary/40 hover:bg-card/80 group"
               style={{ animationDelay: `${index * 200}ms`, animationFillMode: "forwards" }}
             >
               <CardContent className="p-6">
