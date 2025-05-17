@@ -6,6 +6,21 @@ import { useState, useRef } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
+// Add custom CSS for medium-large screens (800px-1020px)
+const customStyles = `
+  @media (min-width: 800px) and (max-width: 1020px) {
+    .custom-row-even {
+      flex-direction: row !important;
+    }
+    .custom-row-odd {
+      flex-direction: row-reverse !important;
+    }
+    .custom-half-width {
+      width: 50% !important;
+    }
+  }
+`;
+
 const projects = [
   {
     title: "AI-Powered Task Manager",
@@ -92,8 +107,19 @@ const projects = [
 ];
 
 import { motion, useInView } from "framer-motion";
+import { useEffect } from "react";
 
 export function ProjectsSection() {
+  // Add the custom styles to the document
+  useEffect(() => {
+    const styleElement = document.createElement('style');
+    styleElement.textContent = customStyles;
+    document.head.appendChild(styleElement);
+    
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, []);
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
@@ -121,13 +147,13 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}
+              className={`flex flex-col md:flex-col lg:flex-row${index % 2 === 0 ? '' : '-reverse'} gap-8 items-center ${index % 2 === 0 ? 'custom-row-even' : 'custom-row-odd'}`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
             >
               {/* Image */}
-              <div className="w-full lg:w-1/2 overflow-hidden rounded-lg border border-border/40 hover:border-primary/30 transition-all duration-300 group relative">
+              <div className="w-full md:w-full lg:w-1/2 custom-half-width overflow-hidden rounded-lg border border-border/40 hover:border-primary/30 transition-all duration-300 group relative">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -170,7 +196,7 @@ export function ProjectsSection() {
               </div>
               
               {/* Content */}
-              <div className="w-full lg:w-1/2 space-y-5">
+              <div className="w-full md:w-full lg:w-1/2 custom-half-width space-y-5">
                 <div>
                   <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
                   <p className="text-muted-foreground">{project.description}</p>
