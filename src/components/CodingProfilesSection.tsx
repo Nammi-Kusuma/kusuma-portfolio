@@ -109,7 +109,7 @@ const codingJourney = [
 
 export function CodingProfilesSection() {
   return (
-    <SectionWrapper id="coding-profiles" className="bg-gradient-to-b from-background to-secondary/5">
+    <SectionWrapper id="coding-profiles">
       <div className="container mx-auto max-w-6xl">
         <SectionHeading>Coding Profiles</SectionHeading>
         

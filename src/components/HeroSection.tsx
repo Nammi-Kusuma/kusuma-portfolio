@@ -1,120 +1,309 @@
-import { ArrowDown, Code, Database, Server, Laptop, Smartphone, Globe, Braces, Cpu } from "lucide-react";
+import { ArrowDown, Code, Database, Server, Laptop, Smartphone, Globe, Braces, Cpu, Star, CheckCircle2, Github, Flame, Zap, Brain, Rocket, Play, ChevronRight, Eye, Mail } from "lucide-react";
 import { TypedText } from "./TypedText";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
+import { Card } from "./ui/card";
+import { useState, useEffect, useCallback } from "react";
+
+// Kanban card component
+interface KanbanCardProps {
+  title: string;
+  icon: React.ReactNode;
+  color: string;
+  link?: string;
+  delay?: number;
+}
+
+function KanbanCard({ title, icon, color, link = "#projects", delay = 0 }: KanbanCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: delay }}
+    >
+      <a href={link}>
+        <Card className={`p-4 mb-3 hover:shadow-md transition-all duration-300 border-l-4 ${color} cursor-pointer group`}>
+          <div className="flex items-center gap-3">
+            <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">
+              {icon}
+            </div>
+            <span className="font-medium group-hover:text-primary transition-colors duration-300">{title}</span>
+          </div>
+        </Card>
+      </a>
+    </motion.div>
+  );
+}
+
+// Kanban column component
+interface KanbanColumnProps {
+  title: string;
+  children: React.ReactNode;
+  delay?: number;
+}
+
+function KanbanColumn({ title, children, delay = 0 }: KanbanColumnProps) {
+  return (
+    <motion.div 
+      className="flex-1 min-w-[250px]"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: delay }}
+    >
+      <div className="mb-3 font-semibold text-center text-muted-foreground">{title}</div>
+      <div className="space-y-2">
+        {children}
+      </div>
+    </motion.div>
+  );
+}
+
+// Code snippet for the interactive editor
+const codeSnippets = [
+  {
+    id: "welcome",
+    language: "tsx",
+    title: "Welcome Message",
+    code: " function WelcomeVisitor() {\n  const [visitor, setVisitor] = useState('friend');\n  \n  useEffect(() => {\n    // Personalized greeting\n    console.log('Thanks for visiting my portfolio!');\n    \n    return () => {\n      // Hope to connect soon\n      console.log('Hope you enjoyed exploring my work!');\n    };\n  }, []);\n  \n  return (\n    <div className=\"welcome-container\">\n      <h1>Hello, {visitor}! 👋</h1>\n      <p>Welcome to my portfolio. I'm excited to share my work with you.</p>\n      <button onClick={() => setVisitor('future collaborator')}>Let's Connect</button>\n    </div>\n  );\n}"
+  },
+  {
+    id: "funny",
+    language: "javascript",
+    title: "Developer Jokes",
+    code: " function DevHumor() {\n  const jokes = [\n    { setup: 'Why do programmers prefer dark mode?', punchline: 'Because light attracts bugs! 🐛' },\n    { setup: 'How many programmers does it take to change a light bulb?', punchline: 'None. It\'s a hardware problem! 💡' }\n  ];\n  \n  const [index, setIndex] = useState(0);\n  const nextJoke = () => setIndex(1 - index); // Toggle between 0 and 1\n  \n  return (\n    <div className=\"joke-container\">\n      <p>{jokes[index].setup}</p>\n      <p>{jokes[index].punchline}</p>\n      <button onClick={nextJoke}>Next Joke</button>\n    </div>\n  );\n}"
+  },
+  {
+    id: "contact",
+    language: "typescript",
+    title: "Coffee Chat Invitation",
+    code: " function scheduleCoffeeChat(availability: string[]): string {\n  // No boring contact forms here!\n  const coffeeEmojis = ['☕', '🍵', '🧋', '🥤', '🧃'];\n  const randomEmoji = coffeeEmojis[Math.floor(Math.random() * coffeeEmojis.length)];\n  \n  // Check if we can meet\n  if (availability.length === 0) {\n    return `No time for coffee? That's espresso-ly sad! ${randomEmoji}`;\n  }\n  \n  // Suggest meeting times with terrible puns\n  console.log('Brewing up some meeting times...');\n  \n  return `\n    Great! Let's have a brew-tiful conversation! ${randomEmoji}\n    \n    I'm free on: ${availability.join(', ')}\n    \n    Warning: I might talk a latte about coding.\n    \n    P.S. I promise my code is better than my coffee puns!\n  `;\n}"
+  }
+];
 
 export function HeroSection() {
+  const [activeSnippet, setActiveSnippet] = useState(codeSnippets[0]);
+  const [typedCode, setTypedCode] = useState("");
+  const [cursorVisible, setCursorVisible] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
+  
+  // Function to get the next snippet in rotation
+  const getNextSnippet = useCallback((currentSnippet: typeof codeSnippets[0]) => {
+    const currentIndex = codeSnippets.findIndex(s => s.id === currentSnippet.id);
+    const nextIndex = (currentIndex + 1) % codeSnippets.length;
+    return codeSnippets[nextIndex];
+  }, []);
+  
+  // Typing animation effect
+  useEffect(() => {
+    if (activeSnippet) {
+      setIsTyping(true);
+      setTypedCode("");
+      
+      let i = 0;
+      const code = activeSnippet.code;
+      
+      const typingInterval = setInterval(() => {
+        if (i < code.length) {
+          setTypedCode(prev => prev + code.charAt(i));
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          setIsTyping(false);
+          
+          // Set a timeout to move to the next snippet after completion
+          const pauseTimeout = setTimeout(() => {
+            setActiveSnippet(getNextSnippet(activeSnippet));
+          }, 3000); // Wait 3 seconds before moving to next snippet
+          
+          return () => clearTimeout(pauseTimeout);
+        }
+      }, 20); // Typing speed
+      
+      return () => clearInterval(typingInterval);
+    }
+  }, [activeSnippet, getNextSnippet]);
+  
+  // Cursor blinking effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setCursorVisible(prev => !prev);
+    }, 530);
+    
+    return () => clearInterval(cursorInterval);
+  }, []);
+  
+  // Format code with line numbers
+  const formattedCode = typedCode.split('\n').map((line, index) => (
+    <div key={index} className="flex">
+      <span className="text-muted-foreground w-8 text-right pr-3 select-none">{index + 1}</span>
+      <span className="flex-1">{line}</span>
+    </div>
+  ));
+  
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center pb-16 px-4 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center py-16 px-4 overflow-hidden"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background z-0"></div>
       
-      {/* Geometric elements */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-gradient-to-r from-accent/10 to-primary/10 rounded-full blur-3xl opacity-20"></div>
-      
-      {/* Tech icons with random placement and subtle movement */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[
-          { Icon: Code, size: 40, color: "text-primary/20", top: "23%", left: "12%" },
-          { Icon: Database, size: 36, color: "text-cyan-400/20", top: "67%", left: "8%" },
-          { Icon: Server, size: 38, color: "text-indigo-400/20", top: "35%", left: "78%" },
-          { Icon: Laptop, size: 42, color: "text-violet-400/20", top: "82%", left: "73%" },
-          { Icon: Smartphone, size: 34, color: "text-blue-400/20", top: "15%", left: "85%" },
-          { Icon: Globe, size: 44, color: "text-teal-400/20", top: "75%", left: "32%" },
-          { Icon: Braces, size: 32, color: "text-purple-400/20", top: "42%", left: "22%" },
-          { Icon: Cpu, size: 30, color: "text-amber-400/20", top: "58%", left: "88%" },
-          { Icon: Code, size: 28, color: "text-green-400/20", top: "88%", left: "17%" },
-          { Icon: Database, size: 26, color: "text-pink-400/20", top: "32%", left: "92%" },
-          { Icon: Server, size: 36, color: "text-blue-500/20", top: "12%", left: "42%" },
-          { Icon: Laptop, size: 32, color: "text-indigo-500/20", top: "62%", left: "52%" },
-          { Icon: Braces, size: 30, color: "text-violet-500/20", top: "8%", left: "68%" },
-          { Icon: Cpu, size: 28, color: "text-cyan-500/20", top: "48%", left: "5%" },
-          { Icon: Globe, size: 34, color: "text-teal-500/20", top: "28%", left: "58%" },
-        ].map((icon, i) => (
+      <div className="container relative z-10 max-w-6xl">
+        {/* Main content with code editor theme */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center px-2 sm:px-4">
+          {/* Code editor - appears second on mobile, first on desktop */}
           <motion.div 
-            key={i}
-            className={`absolute ${icon.color}`}
-            style={{
-              top: icon.top,
-              left: icon.left,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: 0.6,
-              y: [Math.random() > 0.5 ? -5 : 5, Math.random() > 0.5 ? 5 : -5, Math.random() > 0.5 ? -5 : 5],
-              rotate: [Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5]
-            }}
-            transition={{ 
-              opacity: { duration: 1 },
-              y: { duration: 3 + Math.random() * 3, repeat: Infinity },
-              rotate: { duration: 4 + Math.random() * 3, repeat: Infinity },
-              delay: i * 0.1
-            }}
+            className="lg:col-span-7 bg-muted/20 backdrop-blur-sm rounded-lg border border-muted/30 overflow-hidden shadow-xl w-full order-2 lg:order-1"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <icon.Icon size={icon.size} />
-          </motion.div>
-        ))}
-      </div>
-      
-      <div className="container relative z-10 space-y-6 max-w-4xl">
-        <div className="flex justify-center mb-8">
-          <div className="h-20 w-20 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center animate-pulse">
-            <div className="h-16 w-16 rounded-full bg-background flex items-center justify-center">
-              <span className="text-3xl font-semibold">NK</span>
+            {/* Editor header */}
+            <div className="flex flex-col sm:flex-row items-center justify-between bg-muted/30 px-4 py-2 border-b border-muted/30 gap-2">
+              <div className="flex space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+              <div className="text-sm font-mono text-muted-foreground order-first sm:order-none">{activeSnippet.title}</div>
+              <div className="flex space-x-2">
+                {codeSnippets.map(snippet => (
+                  <button 
+                    key={snippet.id}
+                    onClick={() => setActiveSnippet(snippet)}
+                    className={`text-xs py-1 px-2 rounded ${activeSnippet.id === snippet.id ? 'bg-primary/20 text-primary' : 'hover:bg-muted/50'}`}
+                  >
+                    {snippet.id}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+            
+            {/* Code content - no scrolling, full height */}
+            <div className="p-4 font-mono text-sm">
+              <pre className="text-left whitespace-pre-wrap break-words">
+                <code>
+                  {formattedCode}
+                  {cursorVisible && !isTyping && <span className="inline-block w-2 h-4 bg-primary ml-0.5 animate-pulse"></span>}
+                </code>
+              </pre>
+            </div>
+            
+            {/* Editor footer */}
+            <div className="flex justify-between items-center bg-muted/30 px-4 py-2 border-t border-muted/30 text-xs text-muted-foreground">
+              <div>language: {activeSnippet.language}</div>
+              <div className="flex items-center gap-2">
+                <Play size={12} />
+                <span className="hidden sm:inline">Run Code</span>
+                <span className="inline sm:hidden">Run</span>
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* Profile info - appears first on mobile, second on desktop */}
+          <motion.div 
+            className="lg:col-span-5 text-left space-y-6 order-1 lg:order-2"
+            initial={{ opacity: 0, y: 20, x: 0 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              Nammi Kusuma
+            </h1>
+            
+            <h2 className="text-xl md:text-2xl text-primary font-medium">
+              Full Stack Developer & Competitive Programmer
+            </h2>
+            
+            <p className="text-muted-foreground">
+              I build exceptional digital experiences with clean code and thoughtful architecture.
+              Specialized in React, TypeScript, and algorithmic problem-solving.
+            </p>
+            
+            {/* Key stats */}
+            <div className="grid grid-cols-2 gap-4 py-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Brain size={16} />
+                </div>
+                <div>
+                  <div className="text-sm font-medium">350+</div>
+                  <div className="text-xs text-muted-foreground">Coding Problems</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Rocket size={16} />
+                </div>
+                <div>
+                  <div className="text-sm font-medium">15+</div>
+                  <div className="text-xs text-muted-foreground">Projects Built</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Github size={16} />
+                </div>
+                <div>
+                  <div className="text-sm font-medium">Open Source</div>
+                  <div className="text-xs text-muted-foreground">Contributor</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Flame size={16} />
+                </div>
+                <div>
+                  <div className="text-sm font-medium">Full Stack</div>
+                  <div className="text-xs text-muted-foreground">Development</div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row items-start gap-3 pt-4">
+              <Button 
+                variant="default" 
+                size="lg" 
+                asChild 
+                className="rounded-md px-6 bg-primary hover:bg-primary/90 transition-all duration-300"
+              >
+                <a href="#projects" className="flex items-center gap-2">
+                  View Projects
+                  <Eye size={16} />
+                </a>
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="lg" 
+                asChild 
+                className="rounded-md px-6 border-primary/50 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300"
+              >
+                <a href="#contact" className="flex items-center gap-2">
+                  Contact Me
+                  <Mail size={16} />
+                </a>
+              </Button>
+            </div>
+          </motion.div>
         </div>
         
-        <div className="space-y-3 text-center">
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter"
-            initial={{ opacity: 0, y: 20 }}
+        {/* Scroll indicator */}
+        <div className="flex justify-center mt-12">
+          <motion.div 
+            className="animate-bounce-subtle"
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
-            <span className="gradient-text">Nammi Kusuma</span>
-          </motion.h1>
-          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            Full Stack Developer | Competitive Programmer
-          </motion.h2>
-        </div>
-
-        <div className="h-16 animate-fade-up animation-delay-500 flex justify-center items-center">
-          <TypedText
-            phrases={[
-              "Building scalable web applications",
-              "Solving complex problems daily",
-              "Creating elegant user experiences",
-              "Optimizing algorithms and performance",
-            ]}
-          />
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 animate-fade-up animation-delay-1000">
-          <Button variant="default" size="lg" asChild className="rounded-full px-8 bg-gradient-to-r from-primary to-accent hover:opacity-90 hover:shadow-lg transition-all duration-300">
-            <a href="#projects">View Projects</a>
-          </Button>
-          <Button variant="outline" size="lg" asChild className="rounded-full px-8 hover:bg-primary/10 border-primary/50">
-            <a href="#contact">Contact Me</a>
-          </Button>
-        </div>
-        
-        <div className="flex justify-center mt-12 pt-20">
-          <div className="animate-bounce-subtle">
             <a href="#about" className="flex flex-col items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <span>Scroll Down</span>
+              <span>Explore More</span>
               <ArrowDown className="h-5 w-5" />
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

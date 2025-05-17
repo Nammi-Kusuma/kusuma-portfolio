@@ -1,7 +1,10 @@
 
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Code, Eye, Star, Layers, Award } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { SectionWrapper } from "./SectionWrapper";
+import { useState, useRef } from "react";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 const projects = [
   {
@@ -88,12 +91,15 @@ const projects = [
   },
 ];
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 export function ProjectsSection() {
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   return (
-    <SectionWrapper id="projects" className="bg-secondary/20">
-      <div className="container mx-auto max-w-6xl">
+    <SectionWrapper id="projects">
+      <div className="container mx-auto max-w-6xl" ref={sectionRef}>
         <SectionHeading>Projects</SectionHeading>
         
         <motion.div 
@@ -113,59 +119,130 @@ export function ProjectsSection() {
         
         <div className="space-y-20 mt-10">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center opacity-0 animate-fade-up`}
-              style={{ animationDelay: `${index * 150}ms`, animationFillMode: "forwards" }}
+              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
             >
               {/* Image */}
-              <div className="w-full lg:w-1/2 overflow-hidden rounded-lg border border-border">
+              <div className="w-full lg:w-1/2 overflow-hidden rounded-lg border border-border/40 hover:border-primary/30 transition-all duration-300 group relative">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="flex gap-4">
+                    <Button size="sm" variant="secondary" className="rounded-full" asChild>
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                        <Eye className="h-4 w-4 mr-1" />
+                        Demo
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="secondary" className="rounded-full" asChild>
+                      <a href={project.sourceLink} target="_blank" rel="noopener noreferrer">
+                        <Code className="h-4 w-4 mr-1" />
+                        Code
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+                
+                {/* Tech badges */}
+                <div className="absolute top-3 left-3 flex gap-1">
+                  {project.tags.slice(0, 3).map((tag, idx) => (
+                    <div 
+                      key={idx} 
+                      className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm p-1 flex items-center justify-center"
+                      title={tag.name}
+                    >
+                      <img src={tag.image} alt={tag.name} className="h-full w-full object-contain" />
+                    </div>
+                  ))}
+                  {project.tags.length > 3 && (
+                    <Badge variant="outline" className="bg-background/80 backdrop-blur-sm h-8 px-2">
+                      +{project.tags.length - 3}
+                    </Badge>
+                  )}
+                </div>
               </div>
               
               {/* Content */}
-              <div className="w-full lg:w-1/2 space-y-4">
-                <h3 className="text-2xl font-bold">{project.title}</h3>
-                <p className="text-muted-foreground">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag.name}
-                      className="bg-secondary rounded-md py-1 px-2 text-xs font-medium flex items-center gap-1"
-                    >
-                      <img src={tag.image} alt={tag.name} className="w-4 h-4" />
-                      {tag.name}
-                    </span>
-                  ))}
+              <div className="w-full lg:w-1/2 space-y-5">
+                <div>
+                  <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground">{project.description}</p>
                 </div>
                 
-                <div className="flex gap-4 pt-4">
-                  <a
-                    href={project.liveLink}
-                    className="inline-flex items-center text-primary hover:text-accent gap-1 transition-colors text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Layers className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Tech Stack</span>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge 
+                        key={tag.name} 
+                        variant="outline"
+                        className="flex items-center gap-1 bg-secondary/20 hover:bg-secondary/30 transition-colors"
+                      >
+                        <img src={tag.image} alt={tag.name} className="w-4 h-4" />
+                        <span className="text-xs">{tag.name}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <Button 
+                    variant="ghost" 
+                    className="px-0 text-primary hover:text-accent hover:bg-transparent transition-colors"
+                    onClick={() => setExpandedProject(expandedProject === index ? null : index)}
                   >
-                    <ExternalLink className="h-4 w-4" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.sourceLink}
-                    className="inline-flex items-center text-primary hover:text-accent gap-1 transition-colors text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-4 w-4" />
-                    Source Code
-                  </a>
+                    {expandedProject === index ? "Show Less" : "Show More"}
+                  </Button>
+                  
+                  {expandedProject === index && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 space-y-4 pt-4 border-t border-border/50"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Award className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium">Key Features</span>
+                      </div>
+                      
+                      <ul className="text-sm text-muted-foreground space-y-2 pl-6 list-disc">
+                        <li>Responsive design for all device sizes</li>
+                        <li>Optimized performance and accessibility</li>
+                        <li>Clean, maintainable code architecture</li>
+                      </ul>
+                      
+                      <div className="flex gap-4 pt-2">
+                        <Button size="sm" className="gap-1" asChild>
+                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                            <Eye className="h-3.5 w-3.5" />
+                            Live Demo
+                          </a>
+                        </Button>
+                        <Button size="sm" variant="outline" className="gap-1" asChild>
+                          <a href={project.sourceLink} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-3.5 w-3.5" />
+                            Source
+                          </a>
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
