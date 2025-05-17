@@ -42,7 +42,7 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between py-4">
           <a href="#home" className="font-bold text-xl">
-            <span className="gradient-text">Portfolio</span>
+            <span className="gradient-text">NK</span>
           </a>
 
           {/* Navigation - Always compact */}
