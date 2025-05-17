@@ -6,9 +6,9 @@ import { useState, useRef } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
-// Add custom CSS for medium-large screens (800px-1020px)
+// Add custom CSS for medium and large screens
 const customStyles = `
-  @media (min-width: 800px) and (max-width: 1020px) {
+  @media (min-width: 800px) {
     .custom-row-even {
       flex-direction: row !important;
     }
@@ -147,7 +147,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className={`flex flex-col md:flex-col lg:flex-row${index % 2 === 0 ? '' : '-reverse'} gap-8 items-center ${index % 2 === 0 ? 'custom-row-even' : 'custom-row-odd'}`}
+              className={`flex flex-col gap-8 items-center ${index % 2 === 0 ? 'custom-row-even' : 'custom-row-odd'}`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
