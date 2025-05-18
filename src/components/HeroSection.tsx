@@ -5,60 +5,6 @@ import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { useState, useEffect, useCallback } from "react";
 
-// Kanban card component
-interface KanbanCardProps {
-  title: string;
-  icon: React.ReactNode;
-  color: string;
-  link?: string;
-  delay?: number;
-}
-
-function KanbanCard({ title, icon, color, link = "#projects", delay = 0 }: KanbanCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay }}
-    >
-      <a href={link}>
-        <Card className={`p-4 mb-3 hover:shadow-md transition-all duration-300 border-l-4 ${color} cursor-pointer group`}>
-          <div className="flex items-center gap-3">
-            <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">
-              {icon}
-            </div>
-            <span className="font-medium group-hover:text-primary transition-colors duration-300">{title}</span>
-          </div>
-        </Card>
-      </a>
-    </motion.div>
-  );
-}
-
-// Kanban column component
-interface KanbanColumnProps {
-  title: string;
-  children: React.ReactNode;
-  delay?: number;
-}
-
-function KanbanColumn({ title, children, delay = 0 }: KanbanColumnProps) {
-  return (
-    <motion.div 
-      className="flex-1 min-w-[250px]"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: delay }}
-    >
-      <div className="mb-3 font-semibold text-center text-muted-foreground">{title}</div>
-      <div className="space-y-2">
-        {children}
-      </div>
-    </motion.div>
-  );
-}
-
-// Code snippet for the interactive editor
 const codeSnippets = [
   {
     id: "welcome",
@@ -86,14 +32,12 @@ export function HeroSection() {
   const [cursorVisible, setCursorVisible] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   
-  // Function to get the next snippet in rotation
   const getNextSnippet = useCallback((currentSnippet: typeof codeSnippets[0]) => {
     const currentIndex = codeSnippets.findIndex(s => s.id === currentSnippet.id);
     const nextIndex = (currentIndex + 1) % codeSnippets.length;
     return codeSnippets[nextIndex];
   }, []);
   
-  // Typing animation effect
   useEffect(() => {
     if (activeSnippet) {
       setIsTyping(true);
@@ -110,20 +54,18 @@ export function HeroSection() {
           clearInterval(typingInterval);
           setIsTyping(false);
           
-          // Set a timeout to move to the next snippet after completion
           const pauseTimeout = setTimeout(() => {
             setActiveSnippet(getNextSnippet(activeSnippet));
-          }, 3000); // Wait 3 seconds before moving to next snippet
+          }, 3000); 
           
           return () => clearTimeout(pauseTimeout);
         }
-      }, 20); // Typing speed
+      }, 20); 
       
       return () => clearInterval(typingInterval);
     }
   }, [activeSnippet, getNextSnippet]);
   
-  // Cursor blinking effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setCursorVisible(prev => !prev);
@@ -132,7 +74,6 @@ export function HeroSection() {
     return () => clearInterval(cursorInterval);
   }, []);
   
-  // Format code with line numbers
   const formattedCode = typedCode.split('\n').map((line, index) => (
     <div key={index} className="flex">
       <span className="text-muted-foreground w-8 text-right pr-3 select-none">{index + 1}</span>
@@ -147,16 +88,13 @@ export function HeroSection() {
     >
       
       <div className="container relative z-10 max-w-6xl">
-        {/* Main content with code editor theme */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center px-2 sm:px-4">
-          {/* Code editor - appears second on mobile, first on desktop */}
           <motion.div 
             className="lg:col-span-7 bg-muted/20 backdrop-blur-sm rounded-lg border border-muted/30 overflow-hidden shadow-xl w-full order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Editor header */}
             <div className="flex flex-col sm:flex-row items-center justify-between bg-muted/30 px-4 py-2 border-b border-muted/30 gap-2">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-400"></div>
@@ -177,7 +115,6 @@ export function HeroSection() {
               </div>
             </div>
             
-            {/* Code content - no scrolling, full height */}
             <div className="p-4 font-mono text-sm">
               <pre className="text-left whitespace-pre-wrap break-words">
                 <code>
@@ -187,7 +124,6 @@ export function HeroSection() {
               </pre>
             </div>
             
-            {/* Editor footer */}
             <div className="flex justify-between items-center bg-muted/30 px-4 py-2 border-t border-muted/30 text-xs text-muted-foreground">
               <div>language: {activeSnippet.language}</div>
               <div className="flex items-center gap-2">
@@ -198,7 +134,6 @@ export function HeroSection() {
             </div>
           </motion.div>
           
-          {/* Profile info - appears first on mobile, second on desktop */}
           <motion.div 
             className="lg:col-span-5 text-left space-y-6 order-1 lg:order-2"
             initial={{ opacity: 0, y: 20, x: 0 }}
@@ -273,7 +208,6 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3 pt-4">
               <Button 
                 variant="default" 
@@ -302,7 +236,6 @@ export function HeroSection() {
           </motion.div>
         </div>
         
-        {/* Scroll indicator */}
         <div className="flex justify-center mt-12">
           <motion.div 
             className="animate-bounce-subtle"

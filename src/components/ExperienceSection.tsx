@@ -1,64 +1,53 @@
 
-import { Briefcase, Calendar, Building, Star } from "lucide-react";
+import { Briefcase, Calendar, Building, Star, Link as LinkIcon } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { SectionWrapper } from "./SectionWrapper";
 import { useState, useRef } from "react";
 import { Card, CardContent } from "./ui/card";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { assets } from "../assets/assets";
 
 const experiences = [
   {
-    title: "Senior Full Stack Developer",
-    company: "Tech Innovations Inc.",
-    logo: "https://cdn-icons-png.flaticon.com/512/13912/13912571.png",
-    period: "2021 - Present",
-    skills: ["React", "Node.js", "TypeScript", "Microservices", "AWS", "Docker", "CI/CD"],
-    description: [
-      "Lead development of microservices architecture for enterprise clients",
-      "Mentored junior developers and implemented code review processes",
-      "Reduced application load time by 40% through performance optimizations",
-      "Implemented CI/CD pipelines resulting in 70% faster deployment times"
-    ]
-  },
-  {
     title: "Full Stack Developer",
-    company: "Digital Solutions Lab",
-    logo: "https://cdn-icons-png.flaticon.com/512/8364/8364546.png",
-    period: "2019 - 2021",
-    skills: ["React", "Redux", "Node.js", "Express", "MongoDB", "JWT", "Responsive Design"],
+    company: "Zenithyuga Tech",
+    logo: assets.ztech,
+    period: "Feb 2025 - Present",
+    skills: ["React", "Node.js", "TypeScript", "AWS", "Web Sockets"],
     description: [
-      "Developed and maintained React-based front-end applications",
-      "Built RESTful APIs using Node.js and Express",
-      "Implemented authentication and authorization using JWT",
-      "Collaborated with UX/UI designers to implement responsive designs"
+      "Built responsive frontend interfaces using React (TypeScript) and connected them with Node.js/Express backend.",
+      "Created and integrated RESTful APIs, dynamic forms, bug tracking dashboard, and a blog section for the platform.",
+      "Developed a certificate generator that processes Excel/manual data with predefined templates.",
+      "Integrated AWS S3 for secure file handling and implemented a bug tracking dashboard."
     ]
   },
   {
-    title: "Junior Software Engineer",
-    company: "WebTech Systems",
-    logo: "https://cdn-icons-png.flaticon.com/512/2920/2920349.png",
-    period: "2017 - 2019",
-    skills: ["JavaScript", "HTML/CSS", "jQuery", "Jest", "Agile", "Git", "Performance Optimization"],
+    title: "Python Developer",
+    company: "Safe Your Web",
+    logo: assets.syw2,
+    period: "Oct 2024 - Dec 2024",
+    skills: ["Python", "FastAPI", "PostgreSQL", "Django"],
     description: [
-      "Developed features for customer-facing web applications",
-      "Fixed bugs and improved application performance",
-      "Wrote unit and integration tests using Jest",
-      "Participated in agile development processes and sprint planning"
+      "Developed scalable RESTful APIs using FastAPI for user login, authentication, and dashboard functionalities.",
+      "Implemented backend logic for dashboard sections: profile, exam scheduling, upcoming exams, exam history, billing, payment history, and notifications.",
+      "Designed and managed relational data using PostgreSQL with optimized schema design.",
+      "Ensured modular, secure, and maintainable code structure for smooth integration with frontend systems."
     ]
   },
   {
-    title: "Software Development Intern",
-    company: "CodeCraft Solutions",
-    logo: "https://cdn-icons-png.flaticon.com/512/9178/9178608.png",
-    period: "2016 - 2017",
-    skills: ["HTML/CSS", "JavaScript", "PHP", "MySQL", "Documentation", "Testing"],
+    title: "CP Lead",
+    company: "Algozenith VIIT",
+    logo: assets.az,
+    link: "https://algozenith-viit.vercel.app/team",
+    period: "Jul 2024 - Apr 2025",
+    skills: ["Competitive Programming", "Algorithms", "Data Structures", "Java","Python", "C++", "C"],
     description: [
-      "Assisted in developing and testing web applications",
-      "Created technical documentation for internal tools",
-      "Learned industry best practices and development workflows",
-      "Participated in code reviews and team meetings"
+      "Collaborated with teammates to organize hackathons, coding competitions, and technical workshops on CP, UI/UX, and other development topics.",
+      "Helped plan and conduct speaker sessions featuring industry professionals and mentors.",
+      "Contributed to event execution, promotion, and smooth coordination of chapter-wide initiatives.",
+      "Supported junior members by sharing resources and encouraging active participation in coding events."
     ]
-  }
+  },
 ];
 
 export function ExperienceSection() {
@@ -87,7 +76,6 @@ export function ExperienceSection() {
         </motion.div>
         
         <div className="mt-16 relative">
-          {/* Timeline line */}
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-primary/60 transform md:-translate-x-1/2"></div>
           
           {experiences.map((exp, index) => (
@@ -98,7 +86,6 @@ export function ExperienceSection() {
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              {/* Timeline dot */}
               <motion.div 
                 className={`absolute left-0 md:left-1/2 top-0 w-3 h-3 rounded-full bg-primary transform md:-translate-x-1/2 z-10 cursor-pointer ${expandedExp === index ? 'ring-4 ring-primary/30' : ''}`}
                 whileHover={{ scale: 1.2 }}
@@ -117,10 +104,8 @@ export function ExperienceSection() {
               </motion.div>
               
               <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                {/* Empty space for alignment on mobile */}
                 <div className="hidden md:block md:w-1/2"></div>
                 
-                {/* Content */}
                 <motion.div 
                   className={`ml-6 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
@@ -146,9 +131,21 @@ export function ExperienceSection() {
                           </motion.div>
                           <div>
                             <h3 className="text-xl font-bold text-primary">{exp.title}</h3>
-                            <div className="flex items-center gap-1 mb-1">
-                              <Building className="h-3.5 w-3.5 text-primary/70" />
-                              <p className="text-accent">{exp.company}</p>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                              <Building className="w-4 h-4" />
+                              <span>{exp.company}</span>
+                              {exp.link && (
+                                <a 
+                                  href={exp.link} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-xs"
+                                  title="Click to visit website"
+                                >
+                                  <LinkIcon className="w-3 h-3" />
+                                  <span>Visit Website</span>
+                                </a>
+                              )}
                             </div>
                             <div className="flex items-center gap-1">
                               <Calendar className="h-3.5 w-3.5 text-primary/70" />
@@ -166,7 +163,6 @@ export function ExperienceSection() {
                         </motion.span>
                       </div>
                       
-                      {/* Skills */}
                       <div className="mb-4 flex flex-wrap gap-1.5">
                         {exp.skills.map((skill, skillIdx) => (
                           <motion.span 
@@ -183,7 +179,6 @@ export function ExperienceSection() {
                         ))}
                       </div>
                       
-                      {/* Description */}
                       <div className="mt-3">
                         <h4 className="text-sm font-medium mb-3 flex items-center gap-1.5">
                           <Star className="h-4 w-4 text-primary" />

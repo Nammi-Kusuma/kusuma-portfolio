@@ -90,67 +90,96 @@ const projects = [
     ]
   },
   {
-    title: "Algorithm Visualizer",
-    description: "Interactive tool for visualizing various algorithms and data structures.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWxnb3JpdGhtfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    tags: [
-      { name: "JavaScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "D3.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" },
-      { name: "CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-      { name: "HTML5", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-    ],
-    liveLink: "#",
-    sourceLink: "#",
-    keyFeatures: [
-      "🔒 Secure authentication with Passport.js",
-      "🏡 Full CRUD for property listings",
-      "📱 Fully responsive design for mobile and desktop",
-      "⚡ Optimized backend performance using Express.js",
-      "🧱 Clean MVC architecture and modular codebase",
-      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
-    ]
-  },
-  {
-    title: "Social Media Dashboard",
-    description: "A comprehensive dashboard for managing and analyzing social media accounts across platforms.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGFzaGJvYXJkfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    title: "Weather Forecast App",
+    description: "A responsive weather application that provides real-time weather updates for any city using the OpenWeatherMap API. Designed with a clean interface and optimized for performance.",
+    image: assets.weatherapp,
     tags: [
       { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Redux", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-      { name: "Firebase", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-      { name: "Material UI", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
-      { name: "Chart.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg" },
-    ],
-    liveLink: "#",
-    sourceLink: "#",
-    keyFeatures: [
-      "🔒 Secure authentication with Passport.js",
-      "🏡 Full CRUD for property listings",
-      "📱 Fully responsive design for mobile and desktop",
-      "⚡ Optimized backend performance using Express.js",
-      "🧱 Clean MVC architecture and modular codebase",
-      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
-    ]
-  },
-  {
-    title: "Weather Forecast App",
-    description: "A weather forecasting application with location-based services and interactive maps.",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    tags: [
-      { name: "React Native", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "OpenWeather API", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "OpenWeatherMap API", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Geolocation", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Maps", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
     ],
-    liveLink: "#",
-    sourceLink: "#",
+    liveLink: "https://nammi-kusuma.github.io/weather-app/",
+    sourceLink: "https://github.com/Nammi-Kusuma/weather-app",
     keyFeatures: [
-      "🔒 Secure authentication with Passport.js",
-      "🏡 Full CRUD for property listings",
-      "📱 Fully responsive design for mobile and desktop",
-      "⚡ Optimized backend performance using Express.js",
-      "🧱 Clean MVC architecture and modular codebase",
-      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+      "🌍 Search any city to get current weather data",
+      "🌡️ Displays temperature, humidity, wind speed, and conditions",
+      "📱 Fully responsive design",
+      "🧩 Simple, clean UI for an intuitive user experience",
+    ]
+  },
+  {
+    title: "Currency Converter",
+    description: "A responsive web application that allows users to convert between different currencies using real-time exchange rates. The application fetches exchange rates from the ExchangeAPI and displays corresponding country flags using the FlagsAPI.",
+    image: assets.cc,
+    tags: [
+      { name: "HTML", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      { name: "JavaScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "ExchangeAPI", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "FlagsAPI", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    ],
+    liveLink: "https://nammi-kusuma.github.io/Currency-Convertor/",
+    sourceLink: "https://github.com/Nammi-Kusuma/Currency-Convertor",
+    keyFeatures: [
+      "🔄 Real-time currency conversion with up-to-date exchange rates",
+      "🚩 Displays country flags for selected currencies",
+      "✅ Input validation to ensure accurate conversions",
+      "📱 Fully responsive and mobile-friendly design",
+    ]
+  },
+  {
+    title: "Rock-Paper-Scissors Game",
+    description: "A classic Rock-Paper-Scissors game built with HTML, CSS, and JavaScript. Users can play against the computer with a simple and intuitive interface.",
+    image: assets.rps,
+    tags: [
+      { name: "HTML", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      { name: "JavaScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    ],
+    liveLink: "https://nammi-kusuma.github.io/Rock-Paper-Scissors/",
+    sourceLink: "https://github.com/Nammi-Kusuma/Rock-Paper-Scissors",
+    keyFeatures: [
+      "🎮 Interactive gameplay against a computer opponent",
+      "🧠 Randomized computer choices for unpredictability",
+      "📊 Real-time score tracking for user and computer",
+      "🎨 Clean and responsive UI design",
+      "🔁 Option to play multiple rounds seamlessly",
+    ]
+  },
+  {
+    title: "Spotify Replica",
+    description: "A static replica of the Spotify web interface built using pure HTML and CSS. This project focuses on replicating the visual layout and design elements of Spotify.",
+    image: assets.spotify,
+    tags: [
+      { name: "HTML", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    ],
+    liveLink: "https://nammi-kusuma.github.io/Spotify-Replica/",
+    sourceLink: "https://github.com/Nammi-Kusuma/Spotify-Replica",
+    keyFeatures: [
+      "🎨 Pixel-perfect recreation of Spotify's desktop UI",
+      "🧭 Structured layout with sidebar, main content, and footer sections",
+      "🖼️ Use of placeholder images and icons to mimic Spotify's aesthetics",
+      "📱 Responsive design optimized for various screen sizes",
+      "🧩 Clean and organized codebase for easy maintenance",
+    ]
+  },
+  {
+    title: "Travel Journal (UI Design)",
+    description: "A static travel journal interface designed using React and CSS. This project focuses on clean visual layout, responsiveness, and modern UI aesthetics.",
+    image: assets.traveljournal,
+    tags: [
+      { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    ],
+    liveLink: "https://nammi-kusuma.github.io/travel-journal/",
+    sourceLink: "https://github.com/Nammi-Kusuma/travel-journal",
+    keyFeatures: [
+      "🖼️ Visually appealing layout for showcasing travel destinations",
+      "📍 Location and description sections styled for clarity and balance",
+      "🎨 Fully responsive and mobile-friendly UI",
+      "🧩 Reusable React components for consistent design",
     ]
   },
 ];

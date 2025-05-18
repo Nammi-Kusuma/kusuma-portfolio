@@ -7,18 +7,11 @@ import { motion } from "framer-motion";
 
 const educations = [
   {
-    degree: "Master of Science in Computer Science",
-    institution: "Stanford University",
-    year: "2015 - 2017",
+    degree: "Computer Sceince and Engineering",
+    institution: "Vignan's Institute of Information Technology",
+    year: "2022 - 2026",
     description: "Focused on Advanced Algorithms and Machine Learning",
-    achievements: "Graduated with Distinction"
-  },
-  {
-    degree: "Bachelor of Engineering in Computer Science",
-    institution: "MIT",
-    year: "2011 - 2015",
-    description: "Foundation in Software Engineering and Data Structures",
-    achievements: "Dean's List, 3.92 GPA"
+    achievements: "CGPA: 9.1"
   },
   {
     degree: "Online Specializations",

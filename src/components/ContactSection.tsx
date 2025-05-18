@@ -7,6 +7,7 @@ import { toast } from "@/components/ui/use-toast";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
+import emailjs from "@emailjs/browser";
 
 interface FormData {
   name: string;
@@ -31,22 +32,22 @@ export function ContactSection() {
   const socialLinks = [
     {
       name: "Email",
-      value: "john.doe@example.com",
-      href: "mailto:john.doe@example.com",
+      value: "kusumanammi0809@gmail.com",
+      href: "mailto:kusumanammi0809@gmail.com",
       icon: Mail,
       color: "bg-gradient-to-r from-pink-500 to-violet-500"
     },
     {
       name: "GitHub",
-      value: "github.com/johndoe",
-      href: "https://github.com/johndoe",
+      value: "github.com/Nammi-Kusuma",
+      href: "https://github.com/Nammi-Kusuma",
       icon: Github,
       color: "bg-gradient-to-r from-gray-700 to-gray-900"
     },
     {
       name: "LinkedIn",
-      value: "linkedin.com/in/johndoe",
-      href: "https://linkedin.com/in/johndoe",
+      value: "linkedin.com/in/kusumanammi",
+      href: "https://linkedin.com/in/kusumanammi",
       icon: Linkedin,
       color: "bg-gradient-to-r from-blue-600 to-blue-800"
     },
@@ -56,13 +57,13 @@ export function ContactSection() {
   const contactInfo = [
     {
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Visakhapatnam, AP",
       icon: MapPin,
       color: "from-green-400 to-emerald-600"
     },
     {
       title: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+91 9392504116",
       icon: Phone,
       color: "from-amber-400 to-orange-600"
     },
@@ -81,35 +82,45 @@ export function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+  
+    try {
+      const result = await emailjs.send(
+        process.env.SERVICE_ID,
+        process.env.TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        process.env.PUBLIC_KEY
+      );
+  
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-      
-      setIsSubmitting(false);
+  
+      setFormData({ name: "", email: "", message: "" });
       setIsSubmitted(true);
-      
-      // Reset submission state after showing success message
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1500);
+  
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast({
+        title: "Failed to send message.",
+        description: "Please try again later or use a different contact method.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+  
 
   return (
-    <SectionWrapper id="contact" className="bg-gradient-to-b from-background to-secondary/10">
+    <SectionWrapper id="contact">
       <div className="container mx-auto max-w-5xl" ref={sectionRef}>
         <SectionHeading>Contact Me</SectionHeading>
         
@@ -122,12 +133,6 @@ export function ContactSection() {
         >
           <h3 className="text-xl md:text-2xl font-bold mb-3 relative inline-block">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">Let's Connect & Collaborate</span>
-            <motion.span 
-              className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-purple-500"
-              initial={{ width: 0 }}
-              animate={{ width: isInView ? "100%" : 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-            />
           </h3>
           <p className="text-muted-foreground mt-4">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. 

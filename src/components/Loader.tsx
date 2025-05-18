@@ -2,10 +2,8 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code, Laptop, Server, Database, Globe } from "lucide-react";
 
-// Create a context to share loading state
 export const LoadingContext = createContext<{ isLoading: boolean }>({ isLoading: true });
 
-// Hook to use loading state in other components
 export const useLoading = () => useContext(LoadingContext);
 
 interface LoaderProps {

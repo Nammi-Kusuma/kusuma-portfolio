@@ -14,7 +14,7 @@ export function Footer() {
           
           <div className="flex gap-4 mb-6">
             <a
-              href="https://github.com/johndoe"
+              href="https://github.com/Nammi-Kusuma"
               target="_blank"
               rel="noopener noreferrer"
               className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
@@ -23,7 +23,7 @@ export function Footer() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com/in/johndoe"
+              href="https://linkedin.com/in/kusumanammi"
               target="_blank"
               rel="noopener noreferrer"
               className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
@@ -32,7 +32,7 @@ export function Footer() {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="mailto:john.doe@example.com"
+              href="mailto:kusumanammi0809@gmail.com"
               className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
               aria-label="Email"
             >
@@ -41,8 +41,8 @@ export function Footer() {
           </div>
           
           <div className="text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
-            <p className="mt-1">Designed and built with ❤️ using React & Tailwind CSS</p>
+            <p>&copy; {new Date().getFullYear()} Kusuma Nammi. All rights reserved.</p>
+            <p className="mt-1">Designed and built with ❤️</p>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ export function AboutSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 order-2 md:order-1">
             <div className="space-y-4">
               <h3 className="text-xl font-bold">Full Stack Developer</h3>
               <p className="text-base">
@@ -80,7 +80,7 @@ export function AboutSection() {
           </div>
 
           <motion.div
-            className="flex justify-center"
+            className="flex justify-center order-1 md:order-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -91,7 +91,6 @@ export function AboutSection() {
               onHoverEnd={() => setHovered(false)}
               animate={controls}
             >
-              {/* Particle background */}
               <div className="absolute -inset-8 -z-10 overflow-hidden">
                 {[...Array(8)].map((_, i) => (
                   <motion.div
@@ -118,15 +117,7 @@ export function AboutSection() {
                 ))}
               </div>
 
-              {/* Removed animated gradient border and background glow effects */}
-
-              {/* Image container with mask */}
               <div className="relative overflow-hidden rounded-lg border-0 transition-all duration-500 max-w-sm mx-auto">
-                {/* Removed overlay gradient */}
-
-                {/* Removed shine effect */}
-
-                {/* Tech stack floating icons */}
                 <div className="absolute inset-0 z-20 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                   <motion.div
                     className="absolute top-6 left-6 text-primary/70 drop-shadow-md"
@@ -161,7 +152,6 @@ export function AboutSection() {
                   </motion.div>
                 </div>
 
-                {/* Main image */}
                 <motion.img
                   src={myprofile4}
                   alt="Developer illustration"
@@ -171,11 +161,8 @@ export function AboutSection() {
                   whileInView={{ filter: "grayscale(0)" }}
                   viewport={{ once: true }}
                 />
-
-                {/* Removed decorative corner elements and animated dots */}
               </div>
 
-              {/* Caption that appears on hover */}
               <div className="absolute bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
                 <motion.p
                   className="text-sm text-center font-medium text-primary"
@@ -186,8 +173,6 @@ export function AboutSection() {
                   Full Stack Developer
                 </motion.p>
               </div>
-
-              {/* Removed subtle pulse effect */}
             </motion.div>
           </motion.div>
         </div>
