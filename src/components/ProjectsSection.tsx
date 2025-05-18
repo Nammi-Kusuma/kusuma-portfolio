@@ -5,6 +5,7 @@ import { SectionWrapper } from "./SectionWrapper";
 import { useState, useRef } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { assets } from "../assets/assets";
 
 // Add custom CSS for medium and large screens
 const customStyles = `
@@ -23,46 +24,70 @@ const customStyles = `
 
 const projects = [
   {
-    title: "AI-Powered Task Manager",
-    description: "A task management application with AI suggestions for prioritization and time allocation.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvamVjdCUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    title: "HostHive",
+    description: "A feature-rich property rental platform that allows users to list, manage, and explore short-term rental properties. HostHive simplifies the hosting process while delivering a smooth experience for guests, similar to Airbnb.",
+    image: assets.hosthive,
     tags: [
-      { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Javascript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Node.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
       { name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
       { name: "Express", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { name: "TensorFlow.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" }
+      { name: "EJS",  }
     ],
-    liveLink: "#",
-    sourceLink: "#",
+    liveLink: "https://hosthive.onrender.com/",
+    sourceLink: "https://github.com/Nammi-Kusuma/HostHive",
+    keyFeatures: [
+      "🔒 Secure authentication with Passport.js",
+      "🏡 Full CRUD for property listings",
+      "📱 Fully responsive design for mobile and desktop",
+      "⚡ Optimized backend performance using Express.js",
+      "🧱 Clean MVC architecture and modular codebase",
+      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+    ]
   },
   {
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform with product management, cart functionality, and payment processing.",
-    image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZWNvbW1lcmNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    tags: [
-      { name: "Next.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "TypeScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Stripe", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stripe/stripe-original.svg" },
-      { name: "PostgreSQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Tailwind CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
-    ],
-    liveLink: "#",
-    sourceLink: "#",
-  },
-  {
-    title: "Real-time Collaborative Editor",
-    description: "A collaborative text editor with real-time synchronization for multiple users.",
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGFib3JhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    title: "SwiftBites",
+    description: "A food ordering web application where users can explore a menu and place orders, while admins manage food items and track orders through a secure dashboard.",
+    image: assets.swiftbites,
     tags: [
       { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "WebSockets", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" },
+      { name: "JavaScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "Node.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "Redis", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+      { name: "Express", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
       { name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "Stripe", image: assets.stripe },
     ],
-    liveLink: "#",
-    sourceLink: "#",
+    liveLink: "https://swiftbites.onrender.com/",
+    sourceLink: "https://github.com/Nammi-Kusuma/SwiftBites",
+    keyFeatures: [
+      "🛒 Users can explore the restaurant menu and place orders",
+      "🧑‍🍳 Admin panel to add, update, or remove food items",
+      "📦 View and manage customer orders from the dashboard",
+      "🔐 Secure login system with authentication",
+      "📱 Responsive layout for both desktop and mobile",
+      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+    ]
+  },
+  {
+    title: "My Portfolio",
+    description: "A sleek and responsive personal portfolio website built with modern web technologies, showcasing projects, skills, and contact information. Designed for performance and scalability.",
+    image: assets.myportfolio,
+    tags: [
+      { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "TypeScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Netlify", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
+    ],
+    liveLink: "https://portfolio-kusuma.netlify.app/",
+    sourceLink: "https://github.com/Nammi-Kusuma/kusuma-portfolio",
+    keyFeatures: [
+      "🎨 Clean, minimalist UI with Tailwind CSS",
+      "⚡ Fast development and build process using Vite",
+      "📱 Fully responsive design for mobile and desktop",
+      "🔐 Type-safe codebase with TypeScript",
+      "🧩 Modular component structure for easy maintenance",
+      "☁️ Cloud deployment via Netlify"
+    ]
   },
   {
     title: "Algorithm Visualizer",
@@ -76,6 +101,14 @@ const projects = [
     ],
     liveLink: "#",
     sourceLink: "#",
+    keyFeatures: [
+      "🔒 Secure authentication with Passport.js",
+      "🏡 Full CRUD for property listings",
+      "📱 Fully responsive design for mobile and desktop",
+      "⚡ Optimized backend performance using Express.js",
+      "🧱 Clean MVC architecture and modular codebase",
+      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+    ]
   },
   {
     title: "Social Media Dashboard",
@@ -90,6 +123,14 @@ const projects = [
     ],
     liveLink: "#",
     sourceLink: "#",
+    keyFeatures: [
+      "🔒 Secure authentication with Passport.js",
+      "🏡 Full CRUD for property listings",
+      "📱 Fully responsive design for mobile and desktop",
+      "⚡ Optimized backend performance using Express.js",
+      "🧱 Clean MVC architecture and modular codebase",
+      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+    ]
   },
   {
     title: "Weather Forecast App",
@@ -103,6 +144,14 @@ const projects = [
     ],
     liveLink: "#",
     sourceLink: "#",
+    keyFeatures: [
+      "🔒 Secure authentication with Passport.js",
+      "🏡 Full CRUD for property listings",
+      "📱 Fully responsive design for mobile and desktop",
+      "⚡ Optimized backend performance using Express.js",
+      "🧱 Clean MVC architecture and modular codebase",
+      "☁️ Cloud deployment via Render with persistent MongoDB Atlas storage"
+    ]
   },
 ];
 
@@ -215,7 +264,7 @@ export function ProjectsSection() {
                         variant="outline"
                         className="flex items-center gap-1 bg-secondary/20 hover:bg-secondary/30 transition-colors"
                       >
-                        <img src={tag.image} alt={tag.name} className="w-4 h-4" />
+                        {tag.image && <img src={tag.image} alt={tag.name} className="w-4 h-4" />}
                         <span className="text-xs">{tag.name}</span>
                       </Badge>
                     ))}
@@ -245,9 +294,9 @@ export function ProjectsSection() {
                       </div>
                       
                       <ul className="text-sm text-muted-foreground space-y-2 pl-6 list-disc">
-                        <li>Responsive design for all device sizes</li>
-                        <li>Optimized performance and accessibility</li>
-                        <li>Clean, maintainable code architecture</li>
+                        {project.keyFeatures.map((feature, index) => (
+                          <li key={index}>{feature}</li>
+                        ))}
                       </ul>
                       
                       <div className="flex gap-4 pt-2">

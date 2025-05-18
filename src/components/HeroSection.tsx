@@ -206,6 +206,17 @@ export function HeroSection() {
             transition={{ duration: 0.8 }}
           >
 
+            <motion.div 
+              className="text-base md:text-lg font-light tracking-wider text-primary mb-1 relative inline-block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="relative">
+                Hai👋, I am
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/30"></span>
+              </span>
+            </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               Nammi Kusuma
             </h1>

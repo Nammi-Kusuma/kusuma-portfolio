@@ -58,8 +58,8 @@ export function AboutSection() {
                 and innovation.
               </p>
               <p className="italic text-sm">
-                <a href="#projects" className="text-primary hover:underline">
-                  Check out my projects!
+                <a href="#projects" className="text-primary">
+                  Check out my <span className="underline hover:gradient-text">projects!</span>
                 </a>
               </p>
             </div>
@@ -72,8 +72,8 @@ export function AboutSection() {
                 contributing to the problem-solving community.
               </p>
               <p className="italic text-sm">
-                <a href="#coding-profiles" className="text-primary hover:underline">
-                  Check out my profiles!
+                <a href="#coding-profiles" className="text-primary">
+                  Check out my <span className="underline hover:gradient-text">profiles!</span>
                 </a>
               </p>
             </div>
