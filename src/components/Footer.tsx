@@ -42,7 +42,9 @@ export function Footer() {
           
           <div className="text-center text-sm text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} Kusuma Nammi. All rights reserved.</p>
-            <p className="mt-1">Designed and built with ❤️</p>
+            <p className="mt-1 flex items-center justify-center gap-1.5 group">
+              Crafted with <span className="group-hover:animate-bounce transition-transform duration-200">💻</span> and <span className="animate-heartbeat text-red-500">❤️</span> by a passionate developer
+            </p>
           </div>
         </div>
       </div>
