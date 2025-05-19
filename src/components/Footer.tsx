@@ -40,11 +40,14 @@ export function Footer() {
             </a>
           </div>
           
-          <div className="text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Kusuma Nammi. All rights reserved.</p>
-            <p className="mt-1 flex items-center justify-center gap-1.5 group">
-              Crafted with <span className="group-hover:animate-bounce transition-transform duration-200">💻</span> and <span className="animate-heartbeat text-red-500">❤️</span> by a passionate developer
-            </p>
+          <div className="text-center text-xs sm:text-sm text-muted-foreground">
+            <p className="text-[11px] sm:text-sm">&copy; {new Date().getFullYear()} Kusuma Nammi. All rights reserved.</p>
+            <div className="mt-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 group">
+              <p className="flex items-center gap-1 sm:gap-1.5">
+                Crafted with <span className="group-hover:animate-bounce transition-transform duration-200">💻</span> and <span className="animate-heartbeat text-red-500">❤️</span>
+              </p>
+              <p>by a passionate developer</p>
+            </div>
           </div>
         </div>
       </div>
