@@ -121,20 +121,20 @@ export function ContactSection() {
 
   return (
     <SectionWrapper id="contact">
-      <div className="container mx-auto max-w-5xl" ref={sectionRef}>
+      <div className="container px-4 sm:px-6 mx-auto max-w-5xl" ref={sectionRef}>
         <SectionHeading>Contact Me</SectionHeading>
         
         {/* Animated header section */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-12 mt-4"
+          className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 mt-4 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <h3 className="text-xl md:text-2xl font-bold mb-3 relative inline-block">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 relative inline-block">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">Let's Connect & Collaborate</span>
           </h3>
-          <p className="text-muted-foreground mt-4">
+          <p className="text-muted-foreground mt-3 sm:mt-4 text-sm sm:text-base">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. 
             Whether you have a question or just want to say hello, I'll try my best to get back to you as soon as possible.
           </p>
@@ -142,7 +142,7 @@ export function ContactSection() {
         
         {/* Contact info cards */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -155,14 +155,14 @@ export function ContactSection() {
               transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <Card className="border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 overflow-hidden">
-                <CardContent className="p-6 flex items-center gap-4">
-                  <div className={`h-12 w-12 rounded-lg bg-gradient-to-r ${info.color} flex items-center justify-center shadow-lg`}>
-                    <info.icon className="h-6 w-6 text-white" />
+              <Card className="border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 overflow-hidden h-full">
+                <CardContent className="p-3 xs:p-4 sm:p-6 flex flex-col xs:flex-row items-center gap-2 xs:gap-3 sm:gap-4 h-full">
+                  <div className={`h-10 w-10 xs:h-12 xs:w-12 rounded-lg bg-gradient-to-r ${info.color} flex items-center justify-center shadow-lg shrink-0`}>
+                    <info.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <div>
-                    <h4 className="text-sm font-medium text-muted-foreground">{info.title}</h4>
-                    <p className="text-base font-semibold">{info.value}</p>
+                  <div className="text-center xs:text-left">
+                    <h4 className="text-xs xs:text-sm font-medium text-muted-foreground mb-0.5 xs:mb-1">{info.title}</h4>
+                    <p className="text-sm xs:text-base font-semibold break-words">{info.value}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -171,7 +171,7 @@ export function ContactSection() {
 
         </motion.div>
         
-        <div className="grid md:grid-cols-5 gap-8 mt-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 sm:gap-8 mt-8 sm:mt-10 items-start px-4 sm:px-0">
           {/* Left column - Social links */}
           <motion.div 
             className="md:col-span-2 space-y-6"
@@ -180,7 +180,7 @@ export function ContactSection() {
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <div>
-              <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="relative">
                   Get In Touch
                   <motion.span 
@@ -191,7 +191,7 @@ export function ContactSection() {
                   />
                 </span>
               </h3>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">
                 Have a project in mind? Looking to collaborate or hire? Feel free to reach out using the form or through my social links.
               </p>
             </div>
@@ -203,20 +203,20 @@ export function ContactSection() {
                   href={link.href}
                   target={link.name !== "Email" ? "_blank" : undefined}
                   rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-card/30 hover:bg-card/80 hover:border-primary/50 transition-all duration-300 group"
+                  className="flex items-center gap-3 xs:gap-4 p-3 xs:p-4 rounded-xl border border-border/50 bg-card/30 hover:bg-card/80 hover:border-primary/50 transition-all duration-300 group"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -20 }}
                   transition={{ delay: 0.5 + (index * 0.1), duration: 0.5 }}
                   whileHover={{ x: 5 }}
                 >
-                  <div className={`h-12 w-12 rounded-lg ${link.color} flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}>
-                    <link.icon className="h-5 w-5 text-white" />
+                  <div className={`h-10 w-10 xs:h-12 xs:w-12 rounded-lg ${link.color} flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}>
+                    <link.icon className="h-4 w-4 xs:h-5 xs:w-5 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-medium text-muted-foreground">{link.name}</h4>
-                    <p className="text-base font-semibold group-hover:text-primary transition-colors">{link.value}</p>
+                    <h4 className="text-xs xs:text-sm font-medium text-muted-foreground">{link.name}</h4>
+                    <p className="text-sm xs:text-base font-semibold group-hover:text-primary transition-colors truncate">{link.value}</p>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <ArrowRight className="h-3 w-3 xs:h-4 xs:w-4 text-muted-foreground group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </motion.a>
               ))}
             </div>

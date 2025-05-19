@@ -172,7 +172,7 @@ export function HeroSection() {
                   <Brain size={16} />
                 </div>
                 <div>
-                  <div className="text-sm font-medium">350+</div>
+                  <div className="text-sm font-medium">500+</div>
                   <div className="text-xs text-muted-foreground">Coding Problems</div>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export function HeroSection() {
                   <Rocket size={16} />
                 </div>
                 <div>
-                  <div className="text-sm font-medium">15+</div>
+                  <div className="text-sm font-medium">8+</div>
                   <div className="text-xs text-muted-foreground">Projects Built</div>
                 </div>
               </div>
