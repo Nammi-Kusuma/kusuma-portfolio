@@ -34,7 +34,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    const gaId = import.meta.env.GOOGLE_ANALYTICS_ID;
+    const gaId = process.env.GOOGLE_ANALYTICS_ID;
   
     const script1 = document.createElement("script");
     script1.async = true;
