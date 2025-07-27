@@ -24,6 +24,26 @@ const customStyles = `
 
 const projects = [
   {
+    title: "TaskNest",
+    description: "TaskNest is a modern and intuitive task management platform that empowers users to organize and track tasks efficiently. Built with a clean, scalable architecture, it mimics platforms like Trello and Notion to offer a smooth and responsive frontend experience. While backend development is still in progress, the current version showcases a fully functional UI with task boards, card interactions, and layout responsiveness.",
+    image: assets.tasknest,
+    tags: [
+      { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "TypeScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Netlify", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
+    ],
+    liveLink: "https://kusuma-tasknet.netlify.app/",
+    sourceLink: "https://github.com/Nammi-Kusuma/TaskNest",
+    keyFeatures: [
+      "🎨 Clean, minimalist UI with Tailwind CSS",
+      "⚡ Fast development and build process using Vite",
+      "🔐 Type-safe codebase with TypeScript",
+      "🧩 Modular component structure for easy maintenance",
+      "☁️ Cloud deployment via Netlify"
+    ]
+  },
+  {
     title: "HostHive",
     description: "A feature-rich property rental platform that allows users to list, manage, and explore short-term rental properties. HostHive simplifies the hosting process while delivering a smooth experience for guests, similar to Airbnb.",
     image: assets.hosthive,
