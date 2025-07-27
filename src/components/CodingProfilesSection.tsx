@@ -14,7 +14,7 @@ const codingProfiles = [
     name: "LeetCode",
     username: "kusuma08",
     rating: "1500+",
-    solved: "300+",
+    solved: "350+",
     achievements: [
       "4 Badges",
       "Top 30% globally",
@@ -30,7 +30,7 @@ const codingProfiles = [
   {
     name: "CodeChef",
     username: "kusuma08",
-    rating: "2★ (1581)",
+    rating: "3★ (1614)",
     solved: "400+",
     achievements: [
       "Participated in 70+ contests",
