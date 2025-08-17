@@ -13,6 +13,7 @@ import az from "./AZ.jpeg";
 import codechef from "./codechef.svg";
 import geeksforgeeks from "./geeksforgeeks.svg";
 import tasknest from "./tasknest.png";
+import finory from "./finory.png";
 
 export const assets = {
     hosthive,
@@ -29,5 +30,6 @@ export const assets = {
     az,
     codechef,
     geeksforgeeks,
-    tasknest
+    tasknest,
+    finory
 }

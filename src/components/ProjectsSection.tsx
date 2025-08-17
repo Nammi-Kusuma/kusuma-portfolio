@@ -24,6 +24,31 @@ const customStyles = `
 
 const projects = [
   {
+    title: "Finory",
+    description: "An AI-powered personal finance application that helps users track expenses, receive intelligent monthly reports, and get real-time budget alerts. Finory simplifies financial management with secure authentication, AI-driven receipt scanning, and workflow automation using Inngest.",
+    image: assets.finory,
+    tags: [
+      { name: "Next.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "TailwindCSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Prisma", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+      { name: "PostgreSQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Inngest", image: "https://avatars.githubusercontent.com/u/99505101?s=200&v=4" },
+      { name: "Arcjet", image: "https://avatars.githubusercontent.com/u/149997572?s=200&v=4" }
+    ],
+    liveLink: "https://finory-app.vercel.app/",
+    sourceLink: "https://github.com/Nammi-Kusuma/finory",
+    keyFeatures: [
+      "🤖 AI-powered receipt scanner to auto-extract and categorize transactions",
+      "📊 Intelligent monthly financial reports with insights",
+      "💸 Real-time budget alerts for better money management",
+      "🔐 Secure authentication and Arcjet protection",
+      "⚡ Event-driven workflows powered by Inngest",
+      "📱 Responsive UI with modern design using TailwindCSS",
+      "☁️ Cloud deployment on Vercel with persistent Convex DB"
+    ]
+  },
+  {
     title: "TaskNest",
     description: "TaskNest is a modern and intuitive task management platform that empowers users to organize and track tasks efficiently. Built with a clean, scalable architecture, it mimics platforms like Trello and Notion to offer a smooth and responsive frontend experience. While backend development is still in progress, the current version showcases a fully functional UI with task boards, card interactions, and layout responsiveness.",
     image: assets.tasknest,
@@ -52,7 +77,7 @@ const projects = [
       { name: "Node.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
       { name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
       { name: "Express", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { name: "EJS",  }
+      { name: "EJS", }
     ],
     liveLink: "https://hosthive.onrender.com/",
     sourceLink: "https://github.com/Nammi-Kusuma/HostHive",
@@ -213,7 +238,7 @@ export function ProjectsSection() {
     const styleElement = document.createElement('style');
     styleElement.textContent = customStyles;
     document.head.appendChild(styleElement);
-    
+
     return () => {
       document.head.removeChild(styleElement);
     };
@@ -225,8 +250,8 @@ export function ProjectsSection() {
     <SectionWrapper id="projects">
       <div className="container mx-auto max-w-6xl" ref={sectionRef}>
         <SectionHeading>Projects</SectionHeading>
-        
-        <motion.div 
+
+        <motion.div
           className="text-center max-w-3xl mx-auto mb-16 mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -236,11 +261,11 @@ export function ProjectsSection() {
             <span className="gradient-text">Turning Ideas into Digital Reality</span>
           </h3>
           <p className="text-muted-foreground">
-            Explore my portfolio of innovative projects that showcase my technical skills, 
+            Explore my portfolio of innovative projects that showcase my technical skills,
             problem-solving abilities, and passion for creating impactful digital experiences.
           </p>
         </motion.div>
-        
+
         <div className="space-y-20 mt-10">
           {projects.map((project, index) => (
             <motion.div
@@ -273,12 +298,12 @@ export function ProjectsSection() {
                     </Button>
                   </div>
                 </div>
-                
+
                 {/* Tech badges */}
                 <div className="absolute top-3 left-3 flex gap-1">
                   {project.tags.slice(0, 3).map((tag, idx) => (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm p-1 flex items-center justify-center"
                       title={tag.name}
                     >
@@ -292,24 +317,24 @@ export function ProjectsSection() {
                   )}
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="w-full md:w-full lg:w-1/2 custom-half-width space-y-5">
                 <div>
                   <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
                   <p className="text-muted-foreground">{project.description}</p>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
                     <Layers className="h-4 w-4 text-primary" />
                     <span className="text-sm font-medium">Tech Stack</span>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <Badge 
-                        key={tag.name} 
+                      <Badge
+                        key={tag.name}
                         variant="outline"
                         className="flex items-center gap-1 bg-secondary/20 hover:bg-secondary/30 transition-colors"
                       >
@@ -319,18 +344,18 @@ export function ProjectsSection() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className="px-0 text-primary hover:text-accent hover:bg-transparent transition-colors"
                     onClick={() => setExpandedProject(expandedProject === index ? null : index)}
                   >
                     {expandedProject === index ? "Show Less" : "Show More"}
                   </Button>
-                  
+
                   {expandedProject === index && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
@@ -341,13 +366,13 @@ export function ProjectsSection() {
                         <Award className="h-4 w-4 text-primary" />
                         <span className="text-sm font-medium">Key Features</span>
                       </div>
-                      
+
                       <ul className="text-sm text-muted-foreground space-y-2 pl-6 list-disc">
                         {project.keyFeatures.map((feature, index) => (
                           <li key={index}>{feature}</li>
                         ))}
                       </ul>
-                      
+
                       <div className="flex gap-4 pt-2">
                         <Button size="sm" className="gap-1" asChild>
                           <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
